@@ -91,7 +91,7 @@ public class Player
 			Move(new Vector4f(0.0f, 1.0f, 0.0f, 0.0f), 0.5f);
 		}
 		
-		/*if(GetTransform().GetPos().GetY()>0.0f)
+		if(GetTransform().GetPos().GetY()>0.0f)
 		{
 			m_currentVelocity.Set(1, (float)(m_currentVelocity.GetY()-9.81*delta*0.4));
 			System.out.println(GetTransform().GetPos().GetY());}
@@ -104,7 +104,7 @@ public class Player
 		{
 			jump=true;
 			m_currentVelocity.Set(1, 1.0f*movementSpeedFactor);
-		}*/
+		}
 		
 		
 		Move(m_currentVelocity, 1.0f);

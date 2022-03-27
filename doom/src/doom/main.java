@@ -37,6 +37,10 @@ public class main
 		long previousTime = System.nanoTime();
 		
 		int period=1;
+		
+		
+		
+		
 		while(true)
 		{
 			long currentTime = System.nanoTime();
