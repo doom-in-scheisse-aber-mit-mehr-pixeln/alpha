@@ -76,7 +76,11 @@ public class Bitmap {
 		float b_lightAmt=lightAmt*sun.GetLightColor().GetY();
 		float g_lightAmt=lightAmt*sun.GetLightColor().GetZ();
 		float r_lightAmt=lightAmt*sun.GetLightColor().GetW();
-		r_lightAmt+=(1-depth);
+		
+		
+		//r_lightAmt+=(1-depth);
+		
+		
 		int destIndex = (destX + destY * m_width) * 4;
 		srcX=srcX%src.GetHeight();
 		srcY=srcY%src.GetWidth();

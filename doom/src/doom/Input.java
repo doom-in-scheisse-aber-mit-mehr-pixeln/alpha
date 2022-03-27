@@ -1,5 +1,6 @@
 package doom;
 
+import java.awt.MouseInfo;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -15,9 +16,6 @@ public class Input implements KeyListener, FocusListener,
 	private boolean[] mouseButtons = new boolean[4];
 	private int mouseX = 0;
 	private int mouseY = 0;
-	private int mouseXOnScreen = 0;
-	private int mouseYOnScreen = 0;
-	public boolean mouseWheelClicked= false;
 
 	public void mouseDragged(MouseEvent e) {
 		mouseX = e.getX();
@@ -27,8 +25,6 @@ public class Input implements KeyListener, FocusListener,
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
-		mouseXOnScreen= e.getXOnScreen();
-		mouseYOnScreen= e.getYOnScreen();
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -44,20 +40,12 @@ public class Input implements KeyListener, FocusListener,
 		int code = e.getButton();
 		if (code > 0 && code < mouseButtons.length)
 			mouseButtons[code] = true;
-		
-		if(e.getButton()==2) {
-		mouseWheelClicked=true;
-		}
 	}
 
 	public void mouseReleased(MouseEvent e) {
 		int code = e.getButton();
 		if (code > 0 && code < mouseButtons.length)
 			mouseButtons[code] = false;
-		
-		if(e.getButton()==2) {
-		mouseWheelClicked=false;
-		}
 	}
 
 	public void focusGained(FocusEvent e) {
@@ -111,14 +99,10 @@ public class Input implements KeyListener, FocusListener,
 	}
 	
 	public int GetMouseXOnScreen() {
-		return mouseXOnScreen;
+		return (int) MouseInfo.getPointerInfo().getLocation().getX();
 	}
 
 	public int GetMouseYOnScreen() {
-		return mouseYOnScreen;
-	}
-	
-	public boolean isMouseWheelClicked() {
-		return mouseWheelClicked;
+		return (int) MouseInfo.getPointerInfo().getLocation().getY();
 	}
 }

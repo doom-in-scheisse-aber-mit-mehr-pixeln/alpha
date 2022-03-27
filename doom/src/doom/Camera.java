@@ -55,13 +55,13 @@ public class Camera
 		if(input.GetKey(KeyEvent.VK_W))
 			Move(GetTransform().GetRot().GetForward(), movAmt);
 		if(input.GetKey(KeyEvent.VK_S))
-			Move(GetTransform().GetRot().GetForward(), -movAmt);
+			Move(GetTransform().GetRot().GetBack(), movAmt);
 		if(input.GetKey(KeyEvent.VK_A))
 			Move(GetTransform().GetRot().GetLeft(), movAmt);
 		if(input.GetKey(KeyEvent.VK_D))
 			Move(GetTransform().GetRot().GetRight(), movAmt);
 		
-		if (input.isMouseWheelClicked()) {
+		if (input.GetMouse(2)) {
 		Rotate(Y_AXIS, SensitivityX*(input.GetMouseX()-m_xMouseStartPoint));
 		Rotate(GetTransform().GetRot().GetRight(), SensitivityY*(input.GetMouseY()-m_yMouseStartPoint));
 		}

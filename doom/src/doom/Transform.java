@@ -22,9 +22,15 @@ public class Transform
 		m_rot = rot;
 		m_scale = scale;
 	}
+	
 	public Transform SetPos(Vector4f pos)
 	{
 		return new Transform(pos, m_rot, m_scale);
+	}
+	
+	public Transform SetRot(Quaternion rot)
+	{
+		return new Transform(m_pos, rot, m_scale);
 	}
 
 	public Transform Rotate(Quaternion rotation)

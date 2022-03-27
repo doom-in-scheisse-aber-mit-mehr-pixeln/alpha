@@ -206,6 +206,33 @@ public class Quaternion
 		return new Vector4f(-1,0,0,1).Rotate(this);
 	}
 	
+	
+	//FP Movement
+	//FP Movement	
+	//FP Movement
+	public Vector4f GetFPForward()
+	{
+		return new Vector4f(0,0,1,1).Rotate(new Quaternion(0.0f, this.GetY(), 0.0f, this.GetW()));
+	}
+	
+	public Vector4f GetFPBack()
+	{
+		return new Vector4f(0,0,-1,1).Rotate(new Quaternion(0.0f, this.GetY(), 0.0f, this.GetW()));
+	}
+	
+	public Vector4f GetFPRight()
+	{
+		return new Vector4f(1,0,0,1).Rotate(new Quaternion(0.0f, this.GetY(), 0.0f, this.GetW()));
+	}
+
+	public Vector4f GetFPLeft()
+	{
+		return new Vector4f(-1,0,0,1).Rotate(new Quaternion(0.0f, this.GetY(), 0.0f, this.GetW()));
+	}
+	//FP Movement
+	//FP Movement
+	//FP Movement
+	
 	public float GetX()
 	{
 		return m_x;
@@ -224,6 +251,26 @@ public class Quaternion
 	public float GetW()
 	{
 		return m_w;
+	}
+	
+	public void SetX(float x)
+	{
+		m_x=x;
+	}
+
+	public void SetY(float y)
+	{
+		m_y=y;
+	}
+
+	public void SetZ(float z)
+	{
+		m_z=z;
+	}
+
+	public void SetW(float w)
+	{
+		m_w=w;
 	}
 
 	public boolean equals(Quaternion r)

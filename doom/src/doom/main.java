@@ -13,17 +13,18 @@ public class main
 
 		Bitmap texture = new Bitmap("./res/bricks.jpg");
 		Bitmap texture2 = new Bitmap("./res/bricks2.jpg");
-		Bitmap texture3 = new Bitmap("./res/tarnfarben.jpg");
+		
+		
 		Mesh monkeyMesh = new Mesh("./res/smoothMonkey0.obj");
 		Transform monkeyTransform = new Transform(new Vector4f(0.0f,0.0f,3.0f));
 
 		Mesh terrainMesh = new Mesh("./res/terrain2.obj");
 		Transform terrainTransform = new Transform(new Vector4f(0.0f,-3.0f,0.0f));
 		
-		Mesh Boing747 = new Mesh("./res/Boing747.obj");
-		
 		Mesh testCubeMesh = new Mesh("./res/Cube with big UV texture.obj");
 		Transform testCubeTransform = new Transform(new Vector4f(3.0f,0.0f,0.0f));
+		
+		
 
 		Player player = new Player(new Matrix4f().InitPerspective((float)Math.toRadians(70.0f),
 					   	(float)target.GetWidth()/(float)target.GetHeight(), 0.1f, 1000.0f));
