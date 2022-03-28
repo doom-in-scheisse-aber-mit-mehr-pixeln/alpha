@@ -8,7 +8,7 @@ public class main
 {
 	public static void main(String[] args) throws IOException
 	{
-		Display display = new Display(0, 0, "Server-42");
+		Display display = new Display(0, 0, "Client-42");
 		RenderContext target = display.GetFrameBuffer();
 
 		Bitmap texture = new Bitmap("./res/bricks.jpg");
@@ -67,28 +67,23 @@ public class main
 		Render render=new Render(display, meshes, target, vp, transform, textures, sun, light_point);
 		render.start();
 		
+		player.Update(display);
+		player.start();
+		
 		while(true)
 		{
 			long currentTime = System.nanoTime();
 			float delta = (float)((currentTime - previousTime)/1000000000.0);
-			System.out.println(delta);
 			previousTime = currentTime;
 
-			player.Update(display, delta);
+			player.Update(display);
 			vp = player.GetViewProjection();
-
-			transform[0] = monkeyTransform.Rotate(new Quaternion(new Vector4f(0,1,0), delta));
 			
-			//monkeyTransform=server.getPlayerTransform();
+			//transform[0]=server.getPlayerTransform();
 			networkTalker.setPlayerTransform(player.GetTransform());
 			
 			
 			render.set4Render(display, meshes, target, vp, transform, textures, sun, light_point);
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 

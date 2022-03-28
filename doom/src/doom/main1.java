@@ -67,13 +67,16 @@ public class main1
 		Render render=new Render(display, meshes, target, vp, transform, textures, sun, light_point);
 		render.start();
 		
+		player.Update(display);
+		player.start();
+		
 		while(true)
 		{
 			long currentTime = System.nanoTime();
 			float delta = (float)((currentTime - previousTime)/1000000000.0);
 			previousTime = currentTime;
 
-			player.Update(display, delta);
+			player.Update(display);
 			vp = player.GetViewProjection();
 			
 			transform[0]=server.getPlayerTransform();
@@ -81,12 +84,6 @@ public class main1
 			
 			
 			render.set4Render(display, meshes, target, vp, transform, textures, sun, light_point);
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 
