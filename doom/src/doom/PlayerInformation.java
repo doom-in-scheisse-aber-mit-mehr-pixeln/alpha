@@ -1,6 +1,6 @@
 package doom;
 
-public class PlayerInformation {
+public class PlayerInformation implements Serializable{
 	private String m_ipAdress;
 	private byte m_team=0;
 	private Vector4f m_pos=new Vector4f(0.0f,0.0f,0.0f,0.0f);
