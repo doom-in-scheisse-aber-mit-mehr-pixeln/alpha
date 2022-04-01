@@ -1,5 +1,7 @@
 package doom;
 
+import java.io.Serializable;
+
 public class PlayerInformation implements Serializable{
 	private String m_ipAdress;
 	private byte m_team=0;
