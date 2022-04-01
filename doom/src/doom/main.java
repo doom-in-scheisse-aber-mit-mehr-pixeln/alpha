@@ -103,7 +103,7 @@ public class main
 			player.Update(display);
 			
 			//transform[2]=server.getPlayerTransform();
-			//playerTransform[0]=transform[2];
+			playerTransform[0]=transform[2];
 			playerInfo.setPos(player.GetPosition());
 			playerInfo.setRot(player.GetTransform().GetRot());
 			networkTalker.setPlayerInfo(playerInfo);
