@@ -94,7 +94,9 @@ public class Player extends Thread
 		
 			final float movAmt = 7.0f * delta;
 
-		
+			Quaternion quat = GetTransform().GetRot();
+			float[] ypr = quat.getEulerAngles();
+			
 			if(input.GetKey(KeyEvent.VK_W))
 				Move(GetTransform().GetRot().GetFPForward(), movAmt*movementSpeedFactor);
 			if(input.GetKey(KeyEvent.VK_S))
@@ -165,39 +167,49 @@ public class Player extends Thread
 		
 		
 			//Rainbow
+			quat = GetTransform().GetRot();
+			ypr = quat.getEulerAngles();
 			if(input.GetKey(KeyEvent.VK_Q)&&m_player_tilt!=-1)
 			{
 				m_player_tilt--;
-				Rotate(GetTransform().GetRot().GetForward(), 0.25f);
+				ypr[1]+=0.25;
 				MoveCamera(GetTransform().GetRot().GetFPLeft(), 0.2f);
 			}
 			else if(!input.GetKey(KeyEvent.VK_Q)&&m_player_tilt==-1)
 			{
 				m_player_tilt++;
-				Rotate(GetTransform().GetRot().GetForward(), -0.25f);
+				ypr[1]-=0.25;
 				MoveCamera(GetTransform().GetRot().GetFPRight(), 0.0f);
 			}
 			if(input.GetKey(KeyEvent.VK_E)&&m_player_tilt!=1)
 			{
 				m_player_tilt++;
-				Rotate(GetTransform().GetRot().GetForward(), -0.25f);
+				ypr[1]-=0.25;
 				MoveCamera(GetTransform().GetRot().GetFPRight(), 0.2f);
 			}
 			else if(!input.GetKey(KeyEvent.VK_E)&&m_player_tilt==1)
 			{
 				m_player_tilt--;
-				Rotate(GetTransform().GetRot().GetForward(), 0.25f);
+				ypr[1]+=0.25;
 				MoveCamera(GetTransform().GetRot().GetFPLeft(), 0.0f);
 			}
+
+			Quaternion newQuat = Quaternion.GetQuaternionFromEulerAngles(ypr[0], ypr[1], ypr[2]);
+			GetTransform().GetRot().SetW(newQuat.GetW());
+			GetTransform().GetRot().SetX(newQuat.GetX());
+			GetTransform().GetRot().SetY(newQuat.GetY());
+			GetTransform().GetRot().SetZ(newQuat.GetZ());
+			
+			
 		
 			if (input.inFocus) {
 				Rotate(Y_AXIS, SensitivityX*(input.GetMouseXOnScreen()-(m_display.getWidth()+m_display.getLocationOnScreen().x) / 2));
 				Rotate(GetTransform().GetRot().GetRight(), SensitivityY*(input.GetMouseYOnScreen()-(m_display.getHeight()+m_display.getLocationOnScreen().y) / 2));
-				Quaternion quat = GetTransform().GetRot();
-				float[] ypr = quat.getEulerAngles();
+				quat = GetTransform().GetRot();
+				ypr = quat.getEulerAngles();
 				if(ypr[2] > 1.5f) {
 					ypr[2] = 1.5f;
-					Quaternion newQuat = Quaternion.GetQuaternionFromEulerAngles(ypr[0], ypr[1], ypr[2]);
+					newQuat = Quaternion.GetQuaternionFromEulerAngles(ypr[0], ypr[1], ypr[2]);
 					GetTransform().GetRot().SetW(newQuat.GetW());
 					GetTransform().GetRot().SetX(newQuat.GetX());
 					GetTransform().GetRot().SetY(newQuat.GetY());
@@ -205,7 +217,7 @@ public class Player extends Thread
 				}
 				if(ypr[2] < -1.5f) {
 					ypr[2] = -1.5f;
-					Quaternion newQuat = Quaternion.GetQuaternionFromEulerAngles(ypr[0], ypr[1], ypr[2]);
+					newQuat = Quaternion.GetQuaternionFromEulerAngles(ypr[0], ypr[1], ypr[2]);
 					GetTransform().GetRot().SetW(newQuat.GetW());
 					GetTransform().GetRot().SetX(newQuat.GetX());
 					GetTransform().GetRot().SetY(newQuat.GetY());
