@@ -70,7 +70,6 @@ public class Bitmap {
 	
 	public void CopyPixel(int destX, int destY, int srcX, int srcY, Bitmap src, float lightAmt, light sun, light light_point, float depth)
 	{
-		//it is a funny thing to use the depth buffor for lighting (1/depth), because then everything near it lights up
 		//float a_lightAmt=(1-depth);
 		float general_lightAmt=0.1f;
 		
